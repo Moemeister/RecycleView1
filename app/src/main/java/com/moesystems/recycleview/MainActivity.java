@@ -28,7 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
         prepareSeries();
 
-        adapter = new SeriesAdapter(series);
+
+        adapter=new SeriesAdapter(series, new SeriesAdapter.MyAdapterListener(){
+            @Override
+            public void toastOnClick(View v, int position) {
+                Toast.makeText(getApplicationContext() ,series.get(position).getDesc()+"\nPages: "+series.get(position).getCaps() ,Toast.LENGTH_SHORT).show();
+
+            }
+        });
         rv.setAdapter(adapter);
     }
 
@@ -43,13 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void btnView(View v){
-        int size = series.size();
-        if (series.get(0).getName() == "The Walking Dead")
-        Toast.makeText(getApplicationContext(),series.get(0).getDesc(),Toast.LENGTH_SHORT).show();
-        if (series.get(1).getName() == "Games of Thrones")
-            Toast.makeText(getApplicationContext(),series.get(1).getDesc(),Toast.LENGTH_SHORT).show();
-        if (series.get(2).getName() == "Breaking Bad")
-            Toast.makeText(getApplicationContext(),series.get(2).getDesc(),Toast.LENGTH_SHORT).show();
+
     }
 
 
